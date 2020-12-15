@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+h1 {
+    color: blue;
+    border: solid 2px blue;
+    border-radius: 44px;
+    padding: 6px;
+}
+ul{
+    list-style-type: none;
+}
+.message{
+    color: blue;
+    background-color: skyblue;
+    font-size: 22px;
+    padding: 5px;
+    border-bottom: solid 2px blue;
+}
+.error_message{
+    color: red;
+    background-color: pink;
+    font-size: 22px;
+    padding: 5px;
+    border-bottom: solid 2px red;
+}
