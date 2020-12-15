@@ -23,7 +23,7 @@
             // exit;
         }
     }else{
-        $_SESSION['error_message'] = '不正アクセスです';
+        $_SESSION['message'] = '不正アクセスです';
         header("Location: index.php");
         exit;
     }
