@@ -16,6 +16,9 @@
             <div class="row mt-5">
                <h1 class="col-sm-12 text-center"><?= $human->name ?>さんの詳細</h1> 
             </div>
+            <div class="row mt-4">
+                <a href="index.php" class="btn btn-primary">会員一覧へ</a>
+            </div>
 
             <table class="table table-bordered table-striped mt-5">
                 <tr>
@@ -35,6 +38,10 @@
                     <td><?= $human->drive() ?></td>
                 </tr>
             </table>
+            <div class="row mt-4">
+                <a href="edit.php?id=<?= $human-> id ?>" class="offset-sm-1 col-sm-4 btn btn-primary">編集</a>
+                <a href="delete.php" class="offset-sm-2 col-sm-4 btn btn-primary">削除</a>
+            </div>
         </div>
     
         <!-- Optional JavaScript -->

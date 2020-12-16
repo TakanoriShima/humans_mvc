@@ -50,7 +50,7 @@ class HumanDAO{
             return "会員登録が完了しました";
             
         }catch(PDOException $e){
-            return "問題が発生しました<br>" . $e->getMessage();
+            return "エラーです";
         }finally{
            self::close_connection($pdo, $stmp); 
         }
@@ -74,6 +74,27 @@ class HumanDAO{
         }catch(PDOException $e){
             return null;
             // return "問題が発生しました<br>" . $e->getMessage();
+        }finally{
+           self::close_connection($pdo, $stmp); 
+        }
+    }
+    
+    // 会員情報を更新するメソッド
+    public static function update($human){
+        try{
+            $pdo = self::get_connection();
+            $stmt = $pdo -> prepare("UPDATE humans set name=:name, age=:age WHERE id=:id");
+            // バインド処理
+            $stmt->bindParam(':name', $human->name, PDO::PARAM_STR);
+            $stmt->bindParam(':age', $human->age, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $human->id, PDO::PARAM_INT);
+            
+            $stmt->execute();
+
+            return "会員情報を更新しました";
+            
+        }catch(PDOException $e){
+            return "エラーです";
         }finally{
            self::close_connection($pdo, $stmp); 
         }

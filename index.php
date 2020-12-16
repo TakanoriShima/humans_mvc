@@ -11,6 +11,10 @@
         $_SESSION['message'] = null;
     }
     
-    include_once 'index_view.php';    
-        
+    if($_SESSION['errors'] !== null){
+        $errors = $_SESSION['errors'];
+        $_SESSION['errors'] = null;
+    }
+    
+    include_once 'index_view.php';
 ?>
