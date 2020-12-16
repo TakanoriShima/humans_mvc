@@ -28,7 +28,8 @@ class HumanDAO{
         $pdo = self::get_connection();
         $stmt = $pdo->query('SELECT * FROM humans');
         // フェッチの結果を、Humanクラスのインスタンスにマッピングする
-        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Human');
+        // ref) https://stackoverflow.com/questions/29805097/php-constructing-a-class-with-pdo-warning-missing-argument
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Human', array('name','age'));
         $humans = $stmt->fetchAll();
         self::close_connection($pdo, $stmp);
         // Humanクラスのインスタンスの配列を返す
