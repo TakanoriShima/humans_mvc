@@ -55,5 +55,28 @@ class HumanDAO{
            self::close_connection($pdo, $stmp); 
         }
     }
+    
+    // 会員番号から1人の会員を取得するメソッド
+    public static function get_human($id){
+        try{
+            $pdo = self::get_connection();
+            $stmt = $pdo -> prepare("SELECT *  FROM humans WHERE id=:id");
+            // バインド処理
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Human', array('name','age'));
+            
+            $human = $stmt->fetch();
+            
+            return $human;
+            
+        }catch(PDOException $e){
+            return null;
+            // return "問題が発生しました<br>" . $e->getMessage();
+        }finally{
+           self::close_connection($pdo, $stmp); 
+        }
+    }
 
 }

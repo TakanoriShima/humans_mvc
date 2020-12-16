@@ -8,23 +8,15 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-        <title>会員一覧</title>
+        <title>会員詳細</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="container">
             <div class="row mt-5">
-               <h1 class="col-sm-12 text-center">会員一覧</h1> 
+               <h1 class="col-sm-12 text-center"><?= $human->name ?>さんの詳細</h1> 
             </div>
-            <?php if($message !== ''): ?>
-            <div class="row">
-                <div class="message col-sm-12 mb-2 text-center"><?= $message ?></div>
-            </div>
-            <?php endif; ?>
-            <div class="row mt-4">
-                <a href="new.php" class="btn btn-primary">新規会員登録</a>
-            </div>
-            <?php if(count($humans) !== 0): ?>
+
             <table class="table table-bordered table-striped mt-5">
                 <tr>
                     <th>会員番号</th>
@@ -34,18 +26,15 @@
                     <th>お酒</th>
                     <th>車の運転</th>
                 </tr>
-                <?php foreach($humans as $human): ?>
                 <tr>
-                    <td><a href="show.php?id=<?= $human->id ?>"><?= $human->id ?></a></td>
+                    <td><?= $human->id ?></td>
                     <td><?= $human->created_at ?></td>
                     <td><?= $human->name ?></td>
                     <td><?= $human->age ?>歳</td>
                     <td><?= $human->drink() ?></td>
                     <td><?= $human->drive() ?></td>
                 </tr>
-                <?php endforeach; ?>
             </table>
-            <?php endif; ?>
         </div>
     
         <!-- Optional JavaScript -->
