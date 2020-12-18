@@ -99,5 +99,22 @@ class HumanDAO{
            self::close_connection($pdo, $stmp); 
         }
     }
+    
+    // 会員番号から1人の会員を削除するメソッド
+    public static function delete($id){
+        try{
+            $pdo = self::get_connection();
+            $stmt = $pdo -> prepare("DELETE FROM humans WHERE id=:id");
+            // バインド処理
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            
+            $stmt->execute();
+            
+        }catch(PDOException $e){
+            return null;
+        }finally{
+           self::close_connection($pdo, $stmp); 
+        }
+    }
 
 }

@@ -40,7 +40,11 @@
             </table>
             <div class="row mt-4">
                 <a href="edit.php?id=<?= $human-> id ?>" class="offset-sm-1 col-sm-4 btn btn-primary">編集</a>
-                <a href="delete.php" class="offset-sm-2 col-sm-4 btn btn-primary">削除</a>
+                <form action="delete.php" method="POST" class="offset-sm-2 col-sm-4 ">
+                    <input type="hidden" name="id" value="<?= $human->id ?>">
+                    <button type="submit" class="btn btn-primary col-sm-12" onclick="return confirm('本当に削除していいですか？');">削除</button>
+                </form>
+                <!--<a href="delete.php" class="offset-sm-2 col-sm-4 btn btn-primary" onclick="return confirm('本当に削除していいですか？');">削除</a>-->
             </div>
         </div>
     
