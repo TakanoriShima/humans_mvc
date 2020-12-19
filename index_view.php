@@ -22,7 +22,15 @@
             </div>
             <?php endif; ?>
             <div class="row mt-4">
-                <a href="new.php" class="btn btn-primary">新規会員登録</a>
+                <a href="new.php" class="col-sm-2 btn btn-primary">新規会員登録</a>
+                <form action="search.php" method="GET" class="col-sm-10">
+                    <div class="row">
+                        <input type="search" name="keyword" class="offset-sm-2 col-sm-4" placeholder="名前を入力">
+                        <input type="submit" value="検索" class="btn btn-primary offset-sm-1 col-sm-2">
+                        <a href="index.php" class="btn btn-danger offset-sm-1 col-sm-2">リセット</a>
+                    </div>
+                </form>
+                
             </div>
             <?php if(count($humans) !== 0): ?>
             <table class="table table-bordered table-striped mt-5">

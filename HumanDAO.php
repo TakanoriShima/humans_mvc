@@ -116,5 +116,28 @@ class HumanDAO{
            self::close_connection($pdo, $stmp); 
         }
     }
+    
+    // 名前のあいまい検索
+    public static function search_humans_name($keyword){
+        try{
+            $pdo = self::get_connection();
+            $stmt = $pdo -> prepare("SELECT *  FROM humans WHERE name LIKE :keyword");
+            // バインド処理
+            $stmt->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
+            
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Human', array('name','age'));
+            
+            $humans = $stmt->fetchAll();
+            
+            return $humans;
+            
+        }catch(PDOException $e){
+            return null;
+            // return "問題が発生しました<br>" . $e->getMessage();
+        }finally{
+           self::close_connection($pdo, $stmp); 
+        }
+    }
 
 }
